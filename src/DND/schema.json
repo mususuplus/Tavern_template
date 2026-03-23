@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {
+    "角色": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "姓名": {
+          "default": "无名冒险者",
+          "type": "string"
+        },
+        "种族": {
+          "default": "人类",
+          "type": "string"
+        },
+        "职业": {
+          "default": "战士",
+          "type": "string"
+        },
+        "等级": {
+          "default": 3,
+          "type": "number"
+        },
+        "背景": {
+          "default": "来自边境营地的自由冒险者。",
+          "type": "string"
+        },
+        "阵营": {
+          "default": "中立善良",
+          "type": "string"
+        },
+        "熟练加值": {
+          "default": 2,
+          "type": "number"
+        },
+        "护甲等级": {
+          "default": 15,
+          "type": "number"
+        },
+        "速度": {
+          "default": 30,
+          "type": "number"
+        },
+        "生命值": {
+          "default": 24,
+          "type": "number"
+        },
+        "生命上限": {
+          "default": 24,
+          "type": "number"
+        },
+        "临时生命": {
+          "type": "number"
+        },
+        "能力值": {
+          "default": {
+            "力量": 16,
+            "敏捷": 12,
+            "体质": 14,
+            "智力": 10,
+            "感知": 13,
+            "魅力": 8
+          },
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "enum": [
+              "力量",
+              "敏捷",
+              "体质",
+              "智力",
+              "感知",
+              "魅力"
+            ]
+          },
+          "additionalProperties": {
+            "default": 10,
+            "type": "number"
+          },
+          "required": [
+            "力量",
+            "敏捷",
+            "体质",
+            "智力",
+            "感知",
+            "魅力"
+          ]
+        }
+      }
+    },
+    "资源": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "金币": {
+          "default": 128,
+          "type": "number"
+        },
+        "法术位摘要": {
+          "default": "无施法职业资源",
+          "type": "string"
+        },
+        "短休剩余": {
+          "default": 2,
+          "type": "number"
+        },
+        "长休计数": {
+          "type": "number"
+        },
+        "资源备注": {
+          "default": "补给充足，火把与口粮仍足够支撑两日。",
+          "type": "string"
+        }
+      }
+    },
+    "小队": {
+      "default": {
+        "莱拉": {
+          "职责": "游荡者",
+          "当前生命": 18,
+          "生命上限": 18,
+          "状态": "潜行",
+          "先攻": 4,
+          "备注": "在侧翼侦查"
+        },
+        "托姆": {
+          "职责": "牧师",
+          "当前生命": 22,
+          "生命上限": 22,
+          "状态": "稳定",
+          "先攻": 1,
+          "备注": "保留治疗位"
+        }
+      },
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "队员名"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "职责": {
+            "default": "支援",
+            "type": "string"
+          },
+          "当前生命": {
+            "default": 10,
+            "type": "number"
+          },
+          "生命上限": {
+            "default": 10,
+            "type": "number"
+          },
+          "状态": {
+            "default": "戒备",
+            "type": "string"
+          },
+          "先攻": {
+            "type": "number"
+          },
+          "备注": {
+            "default": "等待指令",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "剧情": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "当前场景": {
+          "default": "荒原边缘的临时营地",
+          "type": "string"
+        },
+        "场景摘要": {
+          "default": "队伍刚结束一场小规模遭遇战，营火旁正在清点补给、交换情报，并决定下一步路线。",
+          "type": "string"
+        },
+        "任务列表": {
+          "default": {
+            "追查失落圣徽": {
+              "状态": "进行中",
+              "摘要": "从豺狼人袭击现场追踪被掠走的圣徽。",
+              "目标": "在黎明前抵达旧礼拜堂外围。"
+            },
+            "与营地商人议价": {
+              "状态": "可选",
+              "摘要": "补充绷带、火把和箭矢。",
+              "目标": "决定是否花费金币补充物资。"
+            }
+          },
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "任务名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "状态": {
+                "default": "进行中",
+                "type": "string",
+                "enum": [
+                  "进行中",
+                  "可选",
+                  "完成"
+                ]
+              },
+              "摘要": {
+                "type": "string"
+              },
+              "目标": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "战役日志": {
+          "default": {
+            "log-1": {
+              "标题": "夜色中的伏击",
+              "内容": "队伍在营地北侧击退了一支豺狼人侦察队，并从残破的战旗上发现了新的雇主印记。",
+              "时间": "今夜"
+            },
+            "log-2": {
+              "标题": "营火会议",
+              "内容": "大家一致认为先补给再追踪圣徽，避免黎明前体力透支。",
+              "时间": "刚刚"
+            }
+          },
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "日志ID"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "标题": {
+                "default": "新记录",
+                "type": "string"
+              },
+              "内容": {
+                "type": "string"
+              },
+              "时间": {
+                "default": "刚刚",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "关键线索": {
+          "default": {
+            "线索一": "敌人留下的靴印朝礼拜堂废墟延伸。",
+            "线索二": "商人提到最近有人高价收购圣职遗物。"
+          },
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "线索ID"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "剧情钩子": {
+          "default": {
+            "hook_ember": {
+              "标题": "余烬中的第二封信",
+              "摘要": "若队伍再次搜索袭击现场，可能发现指向真正雇主的残页。",
+              "状态": "潜伏"
+            }
+          },
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "钩子ID"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "标题": {
+                "default": "未命名钩子",
+                "type": "string"
+              },
+              "摘要": {
+                "type": "string"
+              },
+              "状态": {
+                "default": "潜伏",
+                "type": "string",
+                "enum": [
+                  "潜伏",
+                  "激活",
+                  "兑现"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
