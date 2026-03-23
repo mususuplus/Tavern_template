@@ -1,0 +1,44 @@
+:root {
+  --dnd-bg: #16110d;
+  --dnd-panel: rgba(34, 25, 19, 0.86);
+  --dnd-panel-soft: rgba(63, 46, 33, 0.64);
+  --dnd-panel-strong: rgba(78, 56, 37, 0.92);
+  --dnd-border: rgba(199, 155, 93, 0.65);
+  --dnd-border-soft: rgba(199, 155, 93, 0.3);
+  --dnd-text: #f4e7ce;
+  --dnd-text-soft: #cbb99c;
+  --dnd-accent: #d7a95b;
+  --dnd-accent-deep: #8d4f2b;
+  --dnd-warn: #b64f3f;
+  --dnd-ok: #6d9d6e;
+  --dnd-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --dnd-font-display: 'Georgia', 'Times New Roman', serif;
+  --dnd-font-body: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background:
+    radial-gradient(circle at top, rgba(215, 169, 91, 0.12), transparent 40%),
+    linear-gradient(180deg, #241913 0%, #16110d 100%);
+  color: var(--dnd-text);
+  font-family: var(--dnd-font-body);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}

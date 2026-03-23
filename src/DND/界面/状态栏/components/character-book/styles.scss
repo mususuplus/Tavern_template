@@ -1,0 +1,289 @@
+.book-shell,
+.book-shell .book-hero,
+.book-shell .book-stage,
+.book-shell .book,
+.book-shell .book__page,
+.book-shell .chapter-rail,
+.book-shell .preset-gallery,
+.book-shell .field-grid,
+.book-shell .ability-sheet,
+.book-shell .record-stack,
+.book-shell .record-list,
+.book-shell .preview-grid,
+.book-shell .preview-abilities,
+.book-shell .review-sheet,
+.book-shell .guide-grid,
+.book-shell .choice-row,
+.book-shell .choice-chips {
+  display: grid;
+}
+
+.book-shell {
+  --book-frame-height: auto;
+  --book-page-height: auto;
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  gap: 18px;
+  color: #3b2416;
+  min-height: auto;
+  grid-template-rows: auto auto auto;
+}
+
+.book-shell.book-shell--fullscreen {
+  --book-frame-height: calc(100dvh - 210px);
+  --book-page-height: calc(100dvh - 254px);
+  width: 100%;
+  min-height: 100vh;
+  max-width: none;
+  padding: 14px;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+}
+
+.book-shell .book-hero,
+.book-shell .book,
+.book-shell .chapter-pill,
+.book-shell .preset-card,
+.book-shell .record-card,
+.book-shell .preview-card,
+.book-shell .margin-notes article,
+.book-shell .completion-box {
+  border: 1px solid rgba(109, 70, 38, 0.2);
+  box-shadow: 0 24px 60px rgba(46, 28, 15, 0.16);
+}
+
+.book-shell .book-hero {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  padding: 24px 28px;
+  background:
+    radial-gradient(circle at top left, rgba(181, 132, 66, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(252, 245, 226, 0.96), rgba(235, 220, 189, 0.96));
+}
+
+.book-shell .eyebrow,
+.book-shell .page-kicker,
+.book-shell .field span,
+.book-shell .inline-note span,
+.book-shell .preview-card span,
+.book-shell .margin-notes span,
+.book-shell .book-footer__hint span {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(86, 57, 34, 0.72);
+}
+
+.book-shell .book-hero h1,
+.book-shell .page-head h2,
+.book-shell .preview-card__hero strong,
+.book-shell .completion-box strong {
+  margin: 0;
+  font-family: 'Baskerville Old Face', 'Palatino Linotype', serif;
+}
+
+.book-shell .lead,
+.book-shell .page-head p,
+.book-shell .preset-card p,
+.book-shell .preview-card__hero p,
+.book-shell .margin-notes p,
+.book-shell .review-block p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+.book-shell .book-hero__copy { display: grid; gap: 10px; }
+.book-shell .book-hero__meta { display: grid; gap: 10px; justify-items: end; }
+.book-shell .book-hero__status { display: grid; align-content: center; justify-items: end; gap: 4px; }
+
+.book-shell .fullscreen-button,
+.book-shell .primary-button,
+.book-shell .secondary-button,
+.book-shell .mini-button,
+.book-shell .choice-chip {
+  border: 1px solid rgba(90, 55, 28, 0.22);
+  padding: 11px 16px;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.book-shell .fullscreen-button { color: inherit; background: rgba(255, 249, 235, 0.88); }
+.book-shell .book-stage { gap: 14px; min-height: 0; grid-template-rows: auto auto; }
+.book-shell.book-shell--fullscreen .book-stage { min-height: 0; grid-template-rows: auto minmax(0, 1fr); }
+.book-shell .chapter-rail { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
+.book-shell .chapter-pill { gap: 4px; padding: 12px; background: rgba(251, 245, 228, 0.9); color: inherit; }
+.book-shell .chapter-pill--active { background: linear-gradient(180deg, #7f522e, #a56f3d); color: #f9edd6; }
+
+.book-shell .book {
+  position: relative;
+  grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+  padding: 22px;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  background: linear-gradient(90deg, rgba(173, 127, 72, 0.08) 0, transparent 10%), linear-gradient(180deg, #f8f1de, #ecdcb4 70%, #e5d19d);
+  overflow: visible;
+}
+
+.book-shell.book-shell--fullscreen .book { height: 100%; min-height: 0; overflow: hidden; }
+.book-shell .book__spine { grid-column: 2; background: linear-gradient(180deg, rgba(89, 55, 28, 0.9), rgba(120, 77, 41, 0.75)), #764b28; border-inline: 1px solid rgba(72, 41, 20, 0.4); }
+
+.book-shell .book__page {
+  gap: 18px;
+  padding: 20px 22px 26px;
+  background: linear-gradient(180deg, rgba(255, 249, 233, 0.92), rgba(244, 232, 197, 0.95)), #f6eed8;
+  align-content: start;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.book-shell.book-shell--fullscreen .book__page {
+  height: var(--book-page-height);
+  max-height: var(--book-page-height);
+  overflow-y: auto;
+}
+
+.book-shell .book__page--left { grid-column: 1; }
+.book-shell .book__page--right { grid-column: 3; }
+.book-shell .page-head { display: grid; gap: 8px; padding-bottom: 12px; border-bottom: 1px dashed rgba(101, 67, 39, 0.3); }
+.book-shell .preset-gallery,
+.book-shell .record-stack,
+.book-shell .review-sheet,
+.book-shell .guide-grid,
+.book-shell .choice-row,
+.book-shell .choice-chips { gap: 14px; }
+.book-shell .preset-gallery { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.book-shell .preset-card,
+.book-shell .field,
+.book-shell .record-card,
+.book-shell .preview-card,
+.book-shell .margin-notes article,
+.book-shell .completion-box,
+.book-shell .review-block { background: rgba(255, 250, 238, 0.72); }
+.book-shell .preset-card { gap: 8px; padding: 16px; text-align: left; }
+.book-shell .preset-card--active { background: linear-gradient(180deg, rgba(144, 90, 45, 0.92), rgba(104, 65, 33, 0.92)); color: #f6e4c2; }
+.book-shell .cover-actions,
+.book-shell .guide-panel,
+.book-shell .record-panel,
+.book-shell .preview-card,
+.book-shell .review-block,
+.book-shell .completion-box { display: grid; gap: 12px; }
+
+.book-shell .inline-note textarea,
+.book-shell .field input,
+.book-shell .field textarea,
+.book-shell .field select,
+.book-shell .record-card input,
+.book-shell .record-card textarea,
+.book-shell .record-card select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid rgba(113, 75, 42, 0.22);
+  background: rgba(255, 252, 244, 0.78);
+  color: inherit;
+}
+
+.book-shell .field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.book-shell .guide-panel,
+.book-shell .choice-panel { padding: 16px; border: 1px solid rgba(113, 75, 42, 0.18); background: rgba(255, 248, 230, 0.82); }
+.book-shell .guide-panel__head { display: grid; gap: 6px; }
+.book-shell .guide-panel__head h3,
+.book-shell .record-panel__head h3,
+.book-shell .review-block h3 { margin: 0; font-family: 'Baskerville Old Face', 'Palatino Linotype', serif; }
+.book-shell .guide-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.book-shell .guide-card { display: grid; gap: 8px; padding: 14px; border: 1px dashed rgba(113, 75, 42, 0.24); background: rgba(255, 252, 243, 0.72); }
+.book-shell .guide-card span,
+.book-shell .choice-panel span { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(86, 57, 34, 0.72); }
+.book-shell .choice-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.book-shell .choice-panel { gap: 10px; }
+.book-shell .choice-chips { display: flex; flex-wrap: wrap; }
+.book-shell .field { display: grid; gap: 8px; padding: 14px; }
+.book-shell .field--stack,
+.book-shell .field--wide { grid-column: 1 / -1; }
+.book-shell .ability-sheet { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.book-shell .ability-sheet__card { display: grid; gap: 10px; padding: 16px; text-align: center; background: rgba(255, 250, 238, 0.72); border: 1px solid rgba(113, 75, 42, 0.18); }
+.book-shell .ability-sheet__card strong { font-size: 28px; color: #915725; }
+.book-shell .ability-sheet__card input { text-align: center; }
+.book-shell .stat-summary,
+.book-shell .record-panel__head,
+.book-shell .record-card__top,
+.book-shell .record-panel__actions,
+.book-shell .book-footer { display: flex; gap: 12px; }
+.book-shell .stat-summary { flex-wrap: wrap; }
+.book-shell .stat-summary article { flex: 1 1 160px; display: grid; gap: 6px; padding: 14px; background: rgba(255, 250, 238, 0.72); border: 1px solid rgba(113, 75, 42, 0.18); }
+.book-shell .record-panel__head,
+.book-shell .record-card__top,
+.book-shell .book-footer { justify-content: space-between; align-items: center; }
+.book-shell .record-list { gap: 10px; }
+.book-shell .record-card { display: grid; gap: 10px; padding: 14px; }
+.book-shell .mini-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.book-shell .preview-card__hero,
+.book-shell .preview-grid,
+.book-shell .preview-abilities,
+.book-shell .margin-notes { display: grid; gap: 12px; }
+.book-shell .preview-card { padding: 18px; }
+.book-shell .preview-card__hero strong { font-size: 32px; }
+.book-shell .preview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.book-shell .preview-grid article,
+.book-shell .preview-abilities article { display: grid; gap: 6px; }
+.book-shell .preview-abilities { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.book-shell .preview-abilities em { font-style: normal; color: #8d4f2b; }
+.book-shell .margin-notes { gap: 10px; }
+.book-shell .margin-notes article { padding: 14px; }
+.book-shell .review-sheet { align-content: start; }
+.book-shell .review-block,
+.book-shell .completion-box { padding: 16px; }
+.book-shell .completion-box--success { background: linear-gradient(180deg, rgba(115, 145, 89, 0.18), rgba(223, 244, 198, 0.56)); }
+.book-shell .primary-button { color: #fff7e9; background: linear-gradient(135deg, #8f5d32, #b57944); }
+.book-shell .secondary-button,
+.book-shell .mini-button,
+.book-shell .choice-chip { background: rgba(255, 249, 235, 0.82); color: inherit; }
+.book-shell .mini-button { padding: 8px 12px; }
+.book-shell .mini-button--ghost { background: rgba(255, 255, 255, 0.52); }
+.book-shell .fullscreen-button:hover,
+.book-shell .primary-button:hover,
+.book-shell .secondary-button:hover,
+.book-shell .mini-button:hover,
+.book-shell .choice-chip:hover { transform: translateY(-1px); }
+.book-shell .primary-button:disabled,
+.book-shell .secondary-button:disabled { opacity: 0.55; cursor: not-allowed; }
+.book-shell .book-footer { padding: 14px 6px; }
+.book-shell.book-shell--fullscreen .book-hero,
+.book-shell.book-shell--fullscreen .book,
+.book-shell.book-shell--fullscreen .book-footer { width: 100%; }
+.book-shell.book-shell--fullscreen .book-footer { padding-inline: 0; }
+.book-shell .book-footer__hint { display: grid; gap: 4px; justify-items: center; text-align: center; }
+
+@media (max-width: 1120px) {
+  .book-shell .preset-gallery,
+  .book-shell .chapter-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .book-shell .book { grid-template-columns: 1fr; gap: 12px; height: auto; max-height: none; }
+  .book-shell .book__spine { grid-column: auto; display: none; }
+  .book-shell .book__page--left,
+  .book-shell .book__page--right { grid-column: auto; }
+}
+
+@media (max-width: 760px) {
+  .book-shell { --book-frame-height: auto; --book-page-height: auto; min-height: auto; grid-template-rows: none; }
+  .book-shell .book-stage { grid-template-rows: none; }
+  .book-shell .book-hero,
+  .book-shell .field-grid,
+  .book-shell .ability-sheet,
+  .book-shell .preview-grid,
+  .book-shell .preview-abilities,
+  .book-shell .mini-grid,
+  .book-shell .preset-gallery,
+  .book-shell .chapter-rail,
+  .book-shell .guide-grid,
+  .book-shell .choice-row { grid-template-columns: 1fr; }
+  .book-shell .book-hero { padding: 18px; }
+  .book-shell .book,
+  .book-shell .book__page { height: auto; max-height: none; padding: 14px; }
+  .book-shell .book-footer { flex-direction: column; }
+  .book-shell.book-shell--fullscreen { padding: 10px; }
+  .book-shell .book-hero__meta { justify-items: stretch; }
+  .book-shell .fullscreen-button { width: 100%; }
+}
