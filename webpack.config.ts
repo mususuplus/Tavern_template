@@ -20,10 +20,13 @@ import WebpackObfuscator from 'webpack-obfuscator';
 const require = createRequire(import.meta.url);
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 
+<<<<<<< HEAD
 const pkg = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, 'package.json'), 'utf-8'));
 const buildVersion = (pkg as { version?: string }).version ?? '0.0.0';
 const buildTime = new Date().toISOString();
 
+=======
+>>>>>>> 098e1f6e4ff8f2f726c3a97ca746d13033a2c842
 interface Config {
   port: number;
   entries: Entry[];
@@ -420,11 +423,15 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
           configFile: path.join(import.meta.dirname, 'tsconfig.json'),
         }),
       ],
+<<<<<<< HEAD
       alias: {
         // 强制全项目使用同一份 React，避免 motion 等依赖使用另一份导致 useContext 报 null
         react: path.join(import.meta.dirname, 'node_modules', 'react'),
         'react-dom': path.join(import.meta.dirname, 'node_modules', 'react-dom'),
       },
+=======
+      alias: {},
+>>>>>>> 098e1f6e4ff8f2f726c3a97ca746d13033a2c842
     },
     plugins: (entry.html === undefined
       ? [new MiniCssExtractPlugin()]
@@ -473,8 +480,11 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
           __VUE_OPTIONS_API__: false,
           __VUE_PROD_DEVTOOLS__: process.env.CI !== 'true',
           __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+<<<<<<< HEAD
           __BUILD_VERSION__: JSON.stringify(buildVersion),
           __BUILD_TIME__: JSON.stringify(buildTime),
+=======
+>>>>>>> 098e1f6e4ff8f2f726c3a97ca746d13033a2c842
         }),
       )
       .concat(
@@ -550,7 +560,11 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
 
       if (
         ['vue', 'vue-router'].every(key => request !== key) &&
+<<<<<<< HEAD
         ['pixi', 'react', 'vue', 'scheduler', 'motion'].some(key => request.includes(key))
+=======
+        ['pixi', 'react', 'vue'].some(key => request.includes(key))
+>>>>>>> 098e1f6e4ff8f2f726c3a97ca746d13033a2c842
       ) {
         return callback();
       }
