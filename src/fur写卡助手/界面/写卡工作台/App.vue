@@ -29,7 +29,21 @@
           </button>
         </nav>
 
-        <template v-if="activeStage !== 'preview'">
+        <template v-if="activeStage === 'disclaimer'">
+          <section class="page-body disclaimer-page">
+            <div class="notice notice-calm">
+              <strong>免责声明</strong>
+              <span>本页面仅固定展示，不参与生成、捕获或导出。</span>
+            </div>
+            <article class="disclaimer-text">
+              <p>本写卡助手仅为提供技术辅助的工具，旨在提升合法合规场景下的工作与学习效率。本工具开发及提供方不认同、背书或代表任何由本工具生成的角色卡、设定、叙事内容、价值观、立场或理念。</p>
+              <p>用户在使用本工具前，应充分了解并严格遵守《生成式人工智能服务管理暂行办法》及国家相关人工智能管理条例、法律法规，严禁将其用于任何违法违规事项，包括但不限于生成虚假信息、传播违法内容、侵犯他人合法权益、破坏信息安全等违反人工智能管理条例及法律规定的行为。</p>
+              <p>若用户违反上述规定，擅自将本工具用于违法事项，由此产生的一切法律责任、经济损失及不良后果均由用户自行承担，与本工具开发及提供方无涉。本工具开发及提供方不承担任何因用户违规使用导致的连带责任。</p>
+            </article>
+          </section>
+        </template>
+
+        <template v-else-if="activeStage !== 'preview'">
           <section class="preset-shelf">
             <button v-for="preset in stagePresets" :key="preset.name" type="button" @click="applyPreset(preset)">
               <span>{{ preset.kind }}</span>
@@ -184,7 +198,7 @@
         <section class="status-grid">
           <div v-for="stage in stages.filter(item => item.key !== 'preview')" :key="stage.key">
             <span>{{ stage.label }}</span>
-            <strong>{{ stage.key === 'frontend' ? '不保存' : finalText(stage.key) ? '已保存' : '未保存' }}</strong>
+            <strong>{{ ['frontend', 'disclaimer'].includes(stage.key) ? '不保存' : finalText(stage.key) ? '已保存' : '未保存' }}</strong>
           </div>
         </section>
 
@@ -211,7 +225,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue';
 
-type StageKey = 'world' | 'concept' | 'mvuSchema' | 'mvuRules' | 'initvar' | 'frontend' | 'opening' | 'preview';
+type StageKey = 'world' | 'concept' | 'mvuSchema' | 'mvuRules' | 'initvar' | 'frontend' | 'opening' | 'disclaimer' | 'preview';
 type DraftKey = Exclude<StageKey, 'preview'>;
 type ConceptMode = '角色' | '模拟器';
 type AdultMode = 'SFW' | 'NSFW';
@@ -267,6 +281,11 @@ const PROJECT_WORLDBOOK_ENTRIES = [
   'fur项目初始变量',
 ];
 const adultModes: AdultMode[] = ['SFW', 'NSFW'];
+const DISCLAIMER_TEXT = [
+  '本写卡助手仅为提供技术辅助的工具，旨在提升合法合规场景下的工作与学习效率。本工具开发及提供方不认同、背书或代表任何由本工具生成的角色卡、设定、叙事内容、价值观、立场或理念。',
+  '用户在使用本工具前，应充分了解并严格遵守《生成式人工智能服务管理暂行办法》及国家相关人工智能管理条例、法律法规，严禁将其用于任何违法违规事项，包括但不限于生成虚假信息、传播违法内容、侵犯他人合法权益、破坏信息安全等违反人工智能管理条例及法律规定的行为。',
+  '若用户违反上述规定，擅自将本工具用于违法事项，由此产生的一切法律责任、经济损失及不良后果均由用户自行承担，与本工具开发及提供方无涉。本工具开发及提供方不承担任何因用户违规使用导致的连带责任。',
+].join('\n\n');
 const stages: Array<{ key: StageKey; index: string; label: string; inputLabel: string; placeholder: string; generateLabel: string; hint: string }> = [
   {
     key: 'world',
@@ -332,8 +351,17 @@ const stages: Array<{ key: StageKey; index: string; label: string; inputLabel: s
     hint: 'AI 输出必须包含 <fur_opening>...</fur_opening>，并读取已保存世界观与角色/模拟器。',
   },
   {
-    key: 'preview',
+    key: 'disclaimer',
     index: '08',
+    label: '免责声明',
+    inputLabel: '',
+    placeholder: '',
+    generateLabel: '',
+    hint: '固定展示免责声明，不参与生成、捕获或导出。',
+  },
+  {
+    key: 'preview',
+    index: '09',
     label: '组合预览',
     inputLabel: '',
     placeholder: '',
@@ -520,6 +548,7 @@ function createDefaultState(): SavedState {
       initvar: { input: '', output: '' },
       frontend: { input: '', output: '' },
       opening: { input: '', output: '' },
+      disclaimer: { input: '', output: '' },
     },
     world_final: '',
     character_final: '',
@@ -604,6 +633,7 @@ const stageTag = computed(() => {
   if (activeStage.value === 'initvar') return 'mvu_initvar';
   if (activeStage.value === 'frontend') return 'html';
   if (activeStage.value === 'opening') return 'fur_opening';
+  if (activeStage.value === 'disclaimer') return '免责声明';
   return state.concept_mode === '模拟器' ? 'fur_simulator' : 'fur_character';
 });
 const requestText = computed(() => buildStagePrompt(activeStage.value));
@@ -635,6 +665,7 @@ function finalText(stage: StageKey) {
   if (stage === 'mvuRules') return state.mvu_rules_final;
   if (stage === 'initvar') return state.mvu_initvar_final;
   if (stage === 'frontend') return '';
+  if (stage === 'disclaimer') return '';
   if (stage === 'concept') return state.concept_mode === '模拟器' ? state.simulator_final : joinCharacterFinals(characterFinals.value);
   return combinedPreview.value;
 }
@@ -803,6 +834,7 @@ onMounted(() => {
 
 function buildStagePrompt(stage: StageKey) {
   if (stage === 'preview') return combinedPreview.value;
+  if (stage === 'disclaimer') return DISCLAIMER_TEXT;
   const draft = state.drafts[stage].input.trim() || (state.worldbook_mode ? '请根据当前阶段补全。' : '请根据当前阶段和已有设定补全。');
   const adultRule =
     state.adult_mode === 'NSFW'
@@ -1511,7 +1543,7 @@ button {
 
 .stage-tabs {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(9, minmax(0, 1fr));
   gap: 6px;
 
   button {
@@ -1743,6 +1775,25 @@ pre {
 .notice-worldbook {
   background: rgba(61, 77, 115, 0.12);
   color: #263757;
+}
+
+.disclaimer-page {
+  align-content: start;
+}
+
+.disclaimer-text {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(58, 48, 34, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.52);
+  padding: 14px;
+}
+
+.disclaimer-text p {
+  margin: 0;
+  color: #2f2b26;
+  font: 14px/1.75 'Trebuchet MS', Verdana, sans-serif;
 }
 
 @media (max-width: 860px) {
