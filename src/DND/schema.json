@@ -52,6 +52,7 @@
           "type": "number"
         },
         "临时生命": {
+          "default": 0,
           "type": "number"
         },
         "能力值": {
@@ -107,6 +108,7 @@
           "type": "number"
         },
         "长休计数": {
+          "default": 0,
           "type": "number"
         },
         "资源备注": {
@@ -159,6 +161,7 @@
             "type": "string"
           },
           "先攻": {
+            "default": 0,
             "type": "number"
           },
           "备注": {
@@ -211,9 +214,11 @@
                 ]
               },
               "摘要": {
+                "default": "",
                 "type": "string"
               },
               "目标": {
+                "default": "",
                 "type": "string"
               }
             }
@@ -245,6 +250,7 @@
                 "type": "string"
               },
               "内容": {
+                "default": "",
                 "type": "string"
               },
               "时间": {
@@ -265,6 +271,7 @@
             "description": "线索ID"
           },
           "additionalProperties": {
+            "default": "",
             "type": "string"
           }
         },
@@ -289,6 +296,7 @@
                 "type": "string"
               },
               "摘要": {
+                "default": "",
                 "type": "string"
               },
               "状态": {

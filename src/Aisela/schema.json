@@ -46,6 +46,7 @@
                 ]
               },
               "描述": {
+                "default": "",
                 "type": "string"
               }
             }
@@ -56,15 +57,19 @@
           "type": "object",
           "properties": {
             "金狮": {
+              "default": 0,
               "type": "number"
             },
             "银辉币": {
+              "default": 0,
               "type": "number"
             },
             "铜叶币": {
+              "default": 0,
               "type": "number"
             },
             "以太结晶": {
+              "default": 0,
               "type": "number"
             }
           }
@@ -153,6 +158,7 @@
                 "type": "string"
               },
               "描述": {
+                "default": "",
                 "type": "string"
               },
               "品质": {
@@ -179,6 +185,7 @@
             "type": "object",
             "properties": {
               "描述": {
+                "default": "",
                 "type": "string"
               },
               "数量": {
@@ -245,6 +252,7 @@
           "type": "string"
         },
         "本幕纪要": {
+          "default": "",
           "type": "string"
         },
         "区域态势": {
@@ -304,9 +312,11 @@
         "type": "object",
         "properties": {
           "职业": {
+            "default": "",
             "type": "string"
           },
           "生命": {
+            "default": 0,
             "type": "number"
           },
           "生命上限": {
@@ -314,6 +324,7 @@
             "type": "number"
           },
           "状态": {
+            "default": "",
             "type": "string"
           }
         }
@@ -330,12 +341,15 @@
         "type": "object",
         "properties": {
           "好感度": {
+            "default": 0,
             "type": "number"
           },
           "关系": {
+            "default": "",
             "type": "string"
           },
           "描述": {
+            "default": "",
             "type": "string"
           },
           "态度温度": {
@@ -384,6 +398,7 @@
             ]
           },
           "描述": {
+            "default": "",
             "type": "string"
           }
         }
@@ -410,15 +425,19 @@
             ]
           },
           "说明": {
+            "default": "",
             "type": "string"
           },
           "目标": {
+            "default": "",
             "type": "string"
           },
           "奖励": {
+            "default": "",
             "type": "string"
           },
           "惩罚": {
+            "default": "",
             "type": "string"
           },
           "状态": {
@@ -432,9 +451,11 @@
             ]
           },
           "排序权重": {
+            "default": 0,
             "type": "number"
           },
           "危机关联": {
+            "default": "",
             "type": "string"
           }
         }
