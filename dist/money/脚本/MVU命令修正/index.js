@@ -1,0 +1,2 @@
+$(async()=>{await waitGlobalInitialized('Mvu'),eventOn(Mvu.events.COMMAND_PARSED,(...a)=>{const t=a.length>=3?a[1]:a[0];Array.isArray(t)&&t.forEach(a=>{!function(a){var t;a.args.length&&'string'==typeof a.args[0]&&(a.args[0]=(t=a.args[0],t.startsWith('/')?t.split('/').slice(1).map(a=>a.replace(/~1/g,'/').replace(/~0/g,'~')).join('.'):t.replace(/^stat_data\./,'')).split('.').map(a=>a.trim().replace(/[:：]\s*$/,'').trim()).join('.'))}(a)})})});
+//# sourceMappingURL=index.js.map

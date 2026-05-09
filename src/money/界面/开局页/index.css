@@ -1,0 +1,341 @@
+:root {
+  --money-bg: #050506;
+  --money-panel: rgba(13, 13, 16, 0.94);
+  --money-line: rgba(214, 178, 94, 0.28);
+  --money-line-soft: rgba(255, 255, 255, 0.08);
+  --money-text: #f2ead6;
+  --money-sub: #a49c8c;
+  --money-gold: #f0c86c;
+  --money-red: #e05a52;
+  --money-shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  color: var(--money-text);
+  font-family: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+svg {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+}
+
+select,
+input,
+textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--money-line-soft);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--money-text);
+  outline: none;
+}
+
+select,
+input {
+  height: 38px;
+  padding: 0 10px;
+}
+
+.opening-page {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--money-line);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(214, 178, 94, 0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(214, 178, 94, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 72% 18%, rgba(78, 165, 255, 0.1), transparent 28%),
+    radial-gradient(circle at 42% 52%, rgba(214, 178, 94, 0.08), transparent 32%),
+    var(--money-bg);
+  background-size: 34px 34px, 34px 34px, auto, auto, auto;
+  box-shadow: var(--money-shadow), inset 0 0 80px rgba(214, 178, 94, 0.045);
+  overflow: hidden;
+}
+
+.opening-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, rgba(243, 210, 122, 0.08), transparent),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 4px);
+  mix-blend-mode: screen;
+}
+
+.opening-page > * {
+  position: relative;
+}
+
+.panel,
+.opening-hero {
+  border: 1px solid var(--money-line-soft);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.014));
+}
+
+.opening-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  border-color: var(--money-line);
+  background:
+    radial-gradient(circle at right, rgba(154, 98, 255, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+}
+
+.opening-hero span,
+.opening-panel label span,
+.opening-target-head strong,
+.panel-head span {
+  color: var(--money-sub);
+  font-size: 11px;
+}
+
+.opening-hero h2,
+.panel-head h2 {
+  margin: 4px 0 0;
+  color: var(--money-gold);
+  letter-spacing: 0;
+}
+
+.opening-hero h2 {
+  font-size: 28px;
+}
+
+.opening-hero p {
+  margin: 8px 0 0;
+  color: var(--money-sub);
+  line-height: 1.55;
+}
+
+.opening-mode-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.opening-mode-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  border: 1px solid var(--money-line-soft);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--money-text);
+  cursor: pointer;
+}
+
+.opening-mode-tabs button.active {
+  border-color: rgba(243, 210, 122, 0.65);
+  background: linear-gradient(135deg, rgba(243, 210, 122, 0.22), rgba(154, 98, 255, 0.11));
+  color: var(--money-gold);
+}
+
+.opening-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 1px solid rgba(240, 200, 108, 0.38);
+  background: rgba(240, 200, 108, 0.08);
+  color: #ffe2a0;
+}
+
+.opening-warning.danger {
+  border-color: rgba(224, 90, 82, 0.52);
+  background: rgba(224, 90, 82, 0.1);
+  color: #ffc1bd;
+}
+
+.opening-panel {
+  min-width: 0;
+  padding: 16px;
+  box-shadow: inset 0 0 35px rgba(255, 255, 255, 0.018);
+}
+
+.panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--money-line-soft);
+  padding-bottom: 12px;
+}
+
+.opening-panel textarea {
+  min-height: 88px;
+  padding: 10px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.opening-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.opening-form-grid label {
+  display: grid;
+  gap: 6px;
+}
+
+.opening-wide-field {
+  grid-column: span 2;
+}
+
+.opening-check {
+  align-content: center;
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+  min-height: 38px;
+}
+
+.opening-check input {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+}
+
+.opening-target-list {
+  display: grid;
+  gap: 12px;
+}
+
+.opening-target-card {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--money-line-soft);
+  background: rgba(255, 255, 255, 0.032);
+}
+
+.opening-target-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.opening-target-head button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(224, 90, 82, 0.52);
+  background: rgba(224, 90, 82, 0.1);
+  color: #ffc1bd;
+  cursor: pointer;
+}
+
+.opening-slider-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.opening-slider-grid label {
+  display: grid;
+  gap: 6px;
+  color: var(--money-sub);
+  font-size: 11px;
+}
+
+.opening-slider-grid input {
+  padding: 0;
+  accent-color: var(--money-gold);
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  min-height: 130px;
+  padding: 22px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  color: var(--money-sub);
+  text-align: center;
+}
+
+.empty-state strong,
+.empty-state span {
+  display: block;
+}
+
+.empty-state strong {
+  color: var(--money-text);
+}
+
+.control-button,
+.primary-wide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  border: 1px solid var(--money-line-soft);
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--money-text);
+  cursor: pointer;
+}
+
+.control-button {
+  padding: 0 14px;
+  font-weight: 800;
+}
+
+.control-button.gold,
+.primary-wide {
+  border-color: rgba(243, 210, 122, 0.55);
+  background: linear-gradient(135deg, rgba(243, 210, 122, 0.9), rgba(155, 112, 40, 0.9));
+  color: #050505;
+  font-weight: 800;
+}
+
+.primary-wide {
+  width: 100%;
+  min-height: 48px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@media (max-width: 760px) {
+  .opening-hero,
+  .opening-mode-tabs,
+  .opening-form-grid,
+  .opening-slider-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .opening-wide-field {
+    grid-column: auto;
+  }
+}
