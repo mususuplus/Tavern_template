@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {
+    "系统": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "等级": {
+          "default": 1,
+          "type": "number"
+        },
+        "当前资金": {
+          "default": 1000000,
+          "$ref": "#/$defs/__schema0"
+        },
+        "今日额度": {
+          "default": 500000,
+          "$ref": "#/$defs/__schema0"
+        },
+        "今日已领取": {
+          "default": false,
+          "$ref": "#/$defs/__schema1"
+        },
+        "商城权限": {
+          "default": "金钱道具",
+          "$ref": "#/$defs/__schema2"
+        },
+        "风险等级": {
+          "default": "低",
+          "type": "string",
+          "enum": [
+            "低",
+            "中",
+            "高",
+            "极高"
+          ]
+        }
+      }
+    },
+    "界面状态": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "当前聚焦目标": {
+          "default": "",
+          "type": "string"
+        },
+        "当前目标状态": {
+          "default": "未接触",
+          "$ref": "#/$defs/__schema3"
+        },
+        "当前行动类型": {
+          "default": "未指定",
+          "type": "string",
+          "enum": [
+            "未指定",
+            "原味交易",
+            "私密素材",
+            "线上支配",
+            "线下见面",
+            "恶堕转折",
+            "资产化维护",
+            "购买道具",
+            "常识补丁"
+          ]
+        },
+        "当前场景": {
+          "default": "未指定",
+          "type": "string"
+        },
+        "推荐加载阶段": {
+          "default": "自动",
+          "type": "string",
+          "enum": [
+            "自动",
+            "原味交易",
+            "私密素材",
+            "线上支配",
+            "线下见面",
+            "恶堕转折",
+            "资产化"
+          ]
+        }
+      }
+    },
+    "目标库": {
+      "default": {},
+      "type": "object",
+      "properties": {},
+      "additionalProperties": {
+        "default": {},
+        "type": "object",
+        "properties": {
+          "身份": {
+            "default": "成年虚构目标",
+            "type": "string"
+          },
+          "年龄": {
+            "default": 24,
+            "type": "number"
+          },
+          "估值金额": {
+            "default": 0,
+            "$ref": "#/$defs/__schema0"
+          },
+          "最低试探报价": {
+            "default": 0,
+            "$ref": "#/$defs/__schema0"
+          },
+          "当前状态": {
+            "default": "未接触",
+            "$ref": "#/$defs/__schema3"
+          },
+          "当前突破口": {
+            "default": "等待试探",
+            "type": "string"
+          },
+          "贪欲": {
+            "default": 50,
+            "$ref": "#/$defs/__schema4"
+          },
+          "自尊": {
+            "default": 50,
+            "$ref": "#/$defs/__schema4"
+          },
+          "羞耻": {
+            "default": 50,
+            "$ref": "#/$defs/__schema4"
+          },
+          "堕落度": {
+            "default": 0,
+            "$ref": "#/$defs/__schema4"
+          },
+          "警觉度": {
+            "default": 20,
+            "$ref": "#/$defs/__schema4"
+          },
+          "最近交易": {
+            "default": "暂无交易",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "商城": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "已购买道具": {
+          "default": {},
+          "type": "object",
+          "properties": {},
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "数量": {
+                "default": 0,
+                "type": "number"
+              },
+              "层级": {
+                "default": "金钱道具",
+                "$ref": "#/$defs/__schema2"
+              }
+            }
+          }
+        }
+      }
+    },
+    "任务": {
+      "default": {},
+      "type": "object",
+      "properties": {},
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "类型": {
+            "default": "系统任务",
+            "type": "string",
+            "enum": [
+              "系统任务",
+              "屈服事件",
+              "商城解锁",
+              "资产任务"
+            ]
+          },
+          "要求": {
+            "default": "等待系统派发",
+            "type": "string"
+          },
+          "进度": {
+            "default": "0/1",
+            "type": "string"
+          },
+          "奖励资金": {
+            "default": 0,
+            "$ref": "#/$defs/__schema0"
+          },
+          "推荐目标": {
+            "default": "任意目标",
+            "type": "string"
+          },
+          "状态": {
+            "default": "未开始",
+            "type": "string",
+            "enum": [
+              "未开始",
+              "进行中",
+              "已完成",
+              "已失败"
+            ]
+          }
+        }
+      }
+    },
+    "$flag": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "首次报价": {
+          "default": false,
+          "$ref": "#/$defs/__schema1"
+        },
+        "首次购买道具": {
+          "default": false,
+          "$ref": "#/$defs/__schema1"
+        },
+        "首次常识补丁": {
+          "default": false,
+          "$ref": "#/$defs/__schema1"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "__schema0": {
+      "type": "number"
+    },
+    "__schema1": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string",
+          "const": "true"
+        },
+        {
+          "type": "string",
+          "const": "false"
+        },
+        {
+          "type": "string",
+          "const": "是"
+        },
+        {
+          "type": "string",
+          "const": "否"
+        },
+        {
+          "type": "number",
+          "const": 1
+        },
+        {
+          "type": "number",
+          "const": 0
+        }
+      ]
+    },
+    "__schema2": {
+      "type": "string",
+      "enum": [
+        "金钱道具",
+        "感官强化",
+        "心理干涉",
+        "常识修改",
+        "现实权限"
+      ]
+    },
+    "__schema3": {
+      "type": "string",
+      "enum": [
+        "未接触",
+        "已试探",
+        "已交易",
+        "已屈服",
+        "已资产化"
+      ]
+    },
+    "__schema4": {
+      "type": "number"
+    }
+  }
+}
