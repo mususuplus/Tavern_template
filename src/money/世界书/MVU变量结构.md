@@ -23,18 +23,56 @@
     - 资产、每日收益、常识规则明细、商城库存、已解锁层级。
 
 <mvu_schema_script>
-import { registerMvuSchema } from 'https://testingcf.jsdelivr.net/gh/MagicalAstrogy/MagVarUpdate/artifact/bundle.js';
+import { registerMvuSchema } from 'https://testingcf.jsdelivr.net/gh/StageDog/tavern_resource/dist/util/mvu_zod.js';
 
 const 等级 = z.coerce.number().transform(value => _.clamp(Math.floor(value), 1, 5));
 const 百分比 = z.coerce.number().transform(value => _.clamp(Math.round(value), 0, 100));
 const 资金 = z.coerce.number().transform(value => _.clamp(Math.floor(value), 0, 999999999999));
-const 风险 = z.enum(['低', '中', '高', '极高']);
-const 目标状态 = z.enum(['未接触', '已试探', '已交易', '已屈服', '已资产化']);
-const 商城层级 = z.enum(['金钱道具', '感官强化', '心理干涉', '常识修改', '现实权限']);
-const 行动类型 = z.enum(['未指定', '原味交易', '私密素材', '线上支配', '线下见面', '恶堕转折', '资产化维护', '购买道具', '常识补丁']);
-const 交易阶段 = z.enum(['自动', '原味交易', '私密素材', '线上支配', '线下见面', '恶堕转折', '资产化']);
-const 任务类型 = z.enum(['系统任务', '屈服事件', '商城解锁', '资产任务']);
-const 任务状态 = z.enum(['未开始', '进行中', '已完成', '已失败']);
+const 风险 = z.coerce.string().transform(value => {
+  const text = value.trim();
+  if (text.includes('极') || text.includes('严重')) return '极高';
+  if (text.includes('高')) return '高';
+  if (text.includes('中')) return '中';
+  if (text.includes('低')) return '低';
+  return '低';
+});
+const 目标状态 = z.coerce.string().transform(value => {
+  const text = value.trim();
+  if (text.includes('资产')) return '已资产化';
+  if (text.includes('屈服')) return '已屈服';
+  if (text.includes('交易') || text.includes('成交')) return '已交易';
+  if (text.includes('试探') || text.includes('接触')) return '已试探';
+  if (text.includes('未') || !text) return '未接触';
+  return text;
+});
+const 商城层级 = z.coerce.string().transform(value => {
+  const text = value.trim();
+  if (text.includes('现实')) return '现实权限';
+  if (text.includes('常识')) return '常识修改';
+  if (text.includes('心理')) return '心理干涉';
+  if (text.includes('感官')) return '感官强化';
+  return '金钱道具';
+});
+const 行动类型 = z.coerce
+  .string()
+  .transform(value => value.trim() || '未指定')
+  .prefault('未指定');
+const 交易阶段 = z.coerce
+  .string()
+  .transform(value => value.trim() || '自动')
+  .prefault('自动');
+const 任务类型 = z
+  .string()
+  .transform(value => value.trim() || '系统任务')
+  .prefault('系统任务');
+const 任务状态 = z.coerce.string().transform(value => {
+  const text = value.trim();
+  if (text.includes('失败')) return '已失败';
+  if (text.includes('完成') || text.includes('结束')) return '已完成';
+  if (text.includes('进行') || text.includes('执行')) return '进行中';
+  if (text.includes('未') || !text) return '未开始';
+  return text;
+});
 const 布尔值 = z
   .union([z.boolean(), z.literal('true'), z.literal('false'), z.literal('是'), z.literal('否'), z.literal(1), z.literal(0)])
   .transform(value => value === true || value === 'true' || value === '是' || value === 1);

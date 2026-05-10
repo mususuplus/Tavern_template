@@ -133,6 +133,10 @@ function entriesOf<T>(record: Record<string, T>) {
   return Object.entries(record) as Array<[string, T]>;
 }
 
+function withCurrentOption<T extends string>(options: readonly T[], current: string) {
+  return options.includes(current as T) ? options : [current, ...options];
+}
+
 function isTierUnlocked(level: number, tier: string) {
   return level >= Math.max(1, shopTiers.indexOf(tier as (typeof shopTiers)[number]) + 1);
 }
@@ -765,6 +769,9 @@ function ManagePage({
   const [itemTier, setItemTier] = useState<OwnedItemType['层级']>('金钱道具');
   const [taskName, setTaskName] = useState(taskEntries[0]?.[0] ?? '');
   const [taskDraft, setTaskDraft] = useState<TaskType>(taskEntries[0]?.[1] ?? defaultTask);
+  const targetStatusOptions = withCurrentOption(targetStatuses, targetDraft.当前状态);
+  const taskTypeOptions = withCurrentOption(taskTypes, taskDraft.类型);
+  const taskStatusOptions = withCurrentOption(taskStatuses, taskDraft.状态);
 
   useEffect(() => {
     if (!targetName) return;
@@ -987,7 +994,7 @@ function ManagePage({
                 setTargetDraft(prev => ({ ...prev, 当前状态: event.target.value as TargetType['当前状态'] }))
               }
             >
-              {targetStatuses.map(status => (
+              {targetStatusOptions.map(status => (
                 <option key={status}>{status}</option>
               ))}
             </select>
@@ -1104,7 +1111,7 @@ function ManagePage({
               value={taskDraft.类型}
               onChange={event => setTaskDraft(prev => ({ ...prev, 类型: event.target.value as TaskType['类型'] }))}
             >
-              {taskTypes.map(type => (
+              {taskTypeOptions.map(type => (
                 <option key={type}>{type}</option>
               ))}
             </select>
@@ -1115,7 +1122,7 @@ function ManagePage({
               value={taskDraft.状态}
               onChange={event => setTaskDraft(prev => ({ ...prev, 状态: event.target.value as TaskType['状态'] }))}
             >
-              {taskStatuses.map(status => (
+              {taskStatusOptions.map(status => (
                 <option key={status}>{status}</option>
               ))}
             </select>
@@ -1179,7 +1186,7 @@ function ManagePage({
                 value={task.状态}
                 onChange={event => updateTaskStatus(name, event.target.value as TaskType['状态'])}
               >
-                {taskStatuses.map(status => (
+                {withCurrentOption(taskStatuses, task.状态).map(status => (
                   <option key={status}>{status}</option>
                 ))}
               </select>
