@@ -20,10 +20,13 @@ import WebpackObfuscator from 'webpack-obfuscator';
 const require = createRequire(import.meta.url);
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 
+<<<<<<< HEAD
 const pkg = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, 'package.json'), 'utf-8'));
 const buildVersion = (pkg as { version?: string }).version ?? '0.0.0';
 const buildTime = new Date().toISOString();
 
+=======
+>>>>>>> 7bdcf6686f559c588cd3e4b41cdfc5e6dd270e6f
 interface Config {
   port: number;
   entries: Entry[];
@@ -420,11 +423,15 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
           configFile: path.join(import.meta.dirname, 'tsconfig.json'),
         }),
       ],
+<<<<<<< HEAD
       alias: {
         // 强制全项目使用同一份 React，避免 motion 等依赖使用另一份导致 useContext 报 null
         react: path.join(import.meta.dirname, 'node_modules', 'react'),
         'react-dom': path.join(import.meta.dirname, 'node_modules', 'react-dom'),
       },
+=======
+      alias: {},
+>>>>>>> 7bdcf6686f559c588cd3e4b41cdfc5e6dd270e6f
     },
     plugins: (entry.html === undefined
       ? [new MiniCssExtractPlugin()]
@@ -460,6 +467,10 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
             { from: 'klona', imports: ['klona'] },
             { from: 'vue-final-modal', imports: ['useModal'] },
             { from: 'zod', imports: ['z'] },
+<<<<<<< HEAD
+=======
+            { from: 'type-fest', imports: [['*', 'TypeFest']], type: true },
+>>>>>>> 7bdcf6686f559c588cd3e4b41cdfc5e6dd270e6f
           ],
         }),
         unpluginVueComponents({
@@ -473,8 +484,11 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
           __VUE_OPTIONS_API__: false,
           __VUE_PROD_DEVTOOLS__: process.env.CI !== 'true',
           __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+<<<<<<< HEAD
           __BUILD_VERSION__: JSON.stringify(buildVersion),
           __BUILD_TIME__: JSON.stringify(buildTime),
+=======
+>>>>>>> 7bdcf6686f559c588cd3e4b41cdfc5e6dd270e6f
         }),
       )
       .concat(
@@ -550,7 +564,11 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
 
       if (
         ['vue', 'vue-router'].every(key => request !== key) &&
+<<<<<<< HEAD
         ['pixi', 'react', 'vue', 'scheduler', 'motion'].some(key => request.includes(key))
+=======
+        ['pixi', 'react', 'vue'].some(key => request.includes(key))
+>>>>>>> 7bdcf6686f559c588cd3e4b41cdfc5e6dd270e6f
       ) {
         return callback();
       }
