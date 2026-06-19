@@ -47,8 +47,14 @@
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[vue]": {
+<<<<<<< HEAD
     "editor.defaultFormatter": "Vue.volar"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "liveServer.settings.port": 5501
+=======
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+>>>>>>> 55b9a5c73448dafe8d865d5c0df9801d4b33774f
 }
