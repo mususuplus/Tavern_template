@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Broken Barrel - Character Status</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#d0c19b",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed": "#2e1413",
+                    "surface-container": "#2d1b19",
+                    "on-secondary": "#462827",
+                    "surface-variant": "#44302d",
+                    "primary-container": "#ffb347",
+                    "tertiary-fixed": "#f1e1b9",
+                    "on-tertiary-fixed-variant": "#504629",
+                    "on-tertiary-fixed": "#221b03",
+                    "surface-dim": "#1f0f0d",
+                    "secondary-fixed-dim": "#eabcb8",
+                    "on-primary-fixed": "#2a1800",
+                    "on-primary": "#462a00",
+                    "secondary-container": "#5f3e3c",
+                    "inverse-surface": "#fcdbd7",
+                    "surface-tint": "#ffb95a",
+                    "inverse-on-surface": "#3f2b29",
+                    "inverse-primary": "#845400",
+                    "primary-fixed": "#ffddb6",
+                    "surface": "#1f0f0d",
+                    "on-tertiary": "#383014",
+                    "secondary": "#eabcb8",
+                    "surface-container-low": "#281715",
+                    "secondary-fixed": "#ffdad7",
+                    "on-surface": "#fcdbd7",
+                    "on-secondary-container": "#d7aaa7",
+                    "background": "#1f0f0d",
+                    "on-tertiary-container": "#594f31",
+                    "surface-container-lowest": "#190a08",
+                    "tertiary-fixed-dim": "#d4c59f",
+                    "on-background": "#fcdbd7",
+                    "surface-container-highest": "#44302d",
+                    "on-error": "#690005",
+                    "primary": "#ffd7a9",
+                    "tertiary": "#edddb5",
+                    "on-primary-fixed-variant": "#643f00",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-container": "#704700",
+                    "outline": "#9f8e7c",
+                    "on-secondary-fixed-variant": "#5f3e3c",
+                    "on-surface-variant": "#d6c3b0",
+                    "outline-variant": "#524535",
+                    "surface-bright": "#493432",
+                    "primary-fixed-dim": "#ffb95a",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#382523"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "gutter": "16px",
+                    "unit": "8px",
+                    "panel-gap": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Source Sans 3"],
+                    "display-lg-mobile": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "headline-md": ["EB Garamond"],
+                    "body-lg": ["Source Sans 3"],
+                    "label-sm": ["Space Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .parchment-texture {
+            background-color: #f1e1b9;
+            background-image: url("https://www.transparenttextures.com/patterns/p6.png");
+            color: #2e1413;
+        }
+        .wooden-panel {
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.1), 0 4px 10px rgba(0,0,0,0.5);
+            border: 2px solid #524535;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.1), 0 8px 20px rgba(0,0,0,0.6);
+            border-color: #ffb95a;
+        }
+        .wax-seal {
+            background: radial-gradient(circle, #93000a 0%, #690005 100%);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.2);
+        }
+        .glow-amber {
+            filter: drop-shadow(0 0 8px rgba(255, 185, 90, 0.4));
+        }
+
+        /* Hearth Glow Flicker Animation */
+        @keyframes hearth-glow {
+            0% { box-shadow: 0 0 15px rgba(255, 100, 0, 0.1), inset 0 0 10px rgba(255, 150, 0, 0.05); border-color: #524535; }
+            30% { box-shadow: 0 0 25px rgba(255, 120, 0, 0.15), inset 0 0 15px rgba(255, 170, 0, 0.08); border-color: #6d5b46; }
+            50% { box-shadow: 0 0 12px rgba(255, 90, 0, 0.08), inset 0 0 8px rgba(255, 140, 0, 0.04); border-color: #4a3d30; }
+            70% { box-shadow: 0 0 22px rgba(255, 110, 0, 0.13), inset 0 0 12px rgba(255, 160, 0, 0.07); border-color: #645341; }
+            100% { box-shadow: 0 0 15px rgba(255, 100, 0, 0.1), inset 0 0 10px rgba(255, 150, 0, 0.05); border-color: #524535; }
+        }
+        .flicker-hearth {
+            animation: hearth-glow 4s infinite ease-in-out;
+        }
+
+        /* Beer Mug Sway/Slosh Animation - Increased frequency and amplitude */
+        @keyframes mug-sway-heavy {
+            0% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+            100% { transform: rotate(-3deg); }
+        }
+        @keyframes slosh-heavy {
+            0% { transform: translateX(-4px) skewX(2deg); }
+            50% { transform: translateX(4px) skewX(-2deg); }
+            100% { transform: translateX(-4px) skewX(2deg); }
+        }
+        .mug-container {
+            animation: mug-sway-heavy 2s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+        .mug-liquid {
+            animation: slosh-heavy 2s infinite ease-in-out;
+        }
+
+        /* Tab Transition Effects */
+        .tab-content {
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hidden-tab {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .active-tab {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes flickering {
+            0% { opacity: 0.8; transform: scale(1); }
+            20% { opacity: 0.95; transform: scale(1.05) skewX(1deg); }
+            40% { opacity: 0.7; transform: scale(0.95) skewX(-1deg); }
+            60% { opacity: 1; transform: scale(1.1) skewX(0.5deg); }
+            80% { opacity: 0.85; transform: scale(1) skewX(-0.5deg); }
+            100% { opacity: 0.9; transform: scale(1); }
+        }
+        .candle-flicker {
+            animation: flickering 0.4s infinite alternate ease-in-out;
+            display: inline-block;
+            transform-origin: bottom center;
+            filter: drop-shadow(0 0 4px #fb923c);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-24 md:pb-0">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-padding h-16 bg-surface-container shadow-md border-b-2 border-outline-variant">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary italic">The Broken Barrel</h1>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant transition-colors p-2 rounded-full">history_edu</button>
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant transition-colors p-2 rounded-full">settings</button>
+</div>
+</header>
+<!-- Side Navigation (Desktop) -->
+<nav class="hidden md:flex flex-col h-full fixed left-0 top-0 pt-20 w-64 bg-surface-container-high border-r border-outline-variant shadow-xl z-40">
+<div class="px-4 py-6 mb-4 flex flex-col items-center">
+<div class="w-20 h-20 rounded-full border-2 border-primary overflow-hidden mb-3 shadow-lg">
+<img alt="Elara Portrait" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvsuEv2pBAho0g1blwabub0-_fK5Oj8Um7S6JgnscH6A70MF0v-VSDbNm-xybKXDLObr8Et-HAEplGG32A_-1QL3-3kVWGB65ocM1IPQRDHuj01W7Xvt8QQMR7XA6HUiR4pt5fjHfSr-bMHNqhCk6kbg2ap9zc8G2-WB85IMpRw2a9FS457xeEJB9vo211uG34APgacqMN_iCEAqhS03X5yoFqO28EQ7PIYAncTAZNqTAqowSo0Cn8mqOtHcEQyDY55vtIrIH6w-E"/>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">Elara</h2>
+<p class="font-body-md text-on-surface-variant">Tavern Wench</p>
+</div>
+<div class="space-y-2">
+<button class="w-[calc(100%-16px)] flex items-center gap-3 px-4 py-3 mx-2 rounded-lg bg-primary-container text-on-primary-container shadow-[inset_0px_1px_2px_rgba(255,255,255,0.1)] transition-all active:scale-95" id="nav-tavern" onclick="switchTab('tavern')">
+<span class="material-symbols-outlined">sports_bar</span>
+<span class="font-body-md">Tavern Info</span>
+</button>
+<button class="w-[calc(100%-16px)] flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all active:scale-95" id="nav-social" onclick="switchTab('social')">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Regulars</span>
+</button>
+<button class="w-[calc(100%-16px)] flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all active:scale-95" id="nav-personal" onclick="switchTab('personal')">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-md">Service Log</span>
+</button>
+</div>
+<div class="mt-auto p-4">
+<button class="w-full py-3 bg-secondary-container text-on-secondary-container rounded-lg font-headline-md shadow-md border border-outline-variant hover:brightness-110 active:scale-95 transition-all">
+                Rest at Inn
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="pt-20 md:ml-64 p-container-padding max-w-5xl mx-auto">
+<!-- TAB 1: TAVERN INFO -->
+<section class="tab-content active-tab space-y-panel-gap" id="tab-tavern">
+<div class="wooden-panel flicker-hearth bg-surface-container-high rounded-xl p-6">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Current Venue</h3>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-body-lg">The Broken Barrel • Main Hall</span>
+</div>
+</div>
+<div class="bg-surface-container-highest px-4 py-2 rounded-lg border border-outline-variant text-right">
+<p class="font-label-sm text-primary uppercase tracking-widest">Current Time</p>
+<p class="font-headline-md text-on-surface">Sunset, 14th of Harvest Moon</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Beer Mug Busy Level -->
+<div class="wooden-panel bg-surface-container p-6 rounded-lg text-center">
+<div class="flex justify-between items-end mb-4">
+<h4 class="font-headline-md text-on-surface text-left">Tavern Crowdedness</h4>
+<span class="font-label-sm text-primary">Very Busy</span>
+</div>
+<div class="relative h-40 w-24 mx-auto mug-container">
+<div class="absolute inset-0 border-4 border-outline-variant rounded-b-xl rounded-t-sm bg-surface-container-lowest overflow-hidden">
+<!-- Froth Effect -->
+<div class="absolute bottom-[82%] left-0 w-full h-8 bg-white opacity-90 blur-sm z-10 mug-liquid"></div>
+<!-- Liquid Fill -->
+<div class="absolute bottom-0 left-0 w-full bg-primary-container h-[85%] transition-all duration-1000 ease-out shadow-[inset_0_0_20px_rgba(255,185,90,0.6)] mug-liquid"></div>
+</div>
+<!-- Handle -->
+<div class="absolute -right-4 top-1/4 w-6 h-20 border-4 border-outline-variant rounded-r-2xl"></div>
+</div>
+<p class="mt-4 font-label-sm text-on-surface-variant">85% Capacity</p>
+</div>
+<!-- Management Stats -->
+<div class="space-y-gutter">
+<div class="wooden-panel stat-card bg-surface-container p-4 rounded-lg flex items-center justify-between cursor-default">
+<div class="flex items-center gap-4">
+<div class="wax-seal w-12 h-12 rounded-full flex items-center justify-center text-on-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase">Boss Satisfaction</p>
+<p class="font-headline-md text-on-surface">Excellent</p>
+</div>
+</div>
+<span class="font-display-lg text-primary">75%</span>
+</div>
+<div class="wooden-panel stat-card bg-surface-container p-4 rounded-lg flex items-center justify-between cursor-default">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase">Boss Favorability</p>
+<p class="font-headline-md text-on-surface">Trusted Staff</p>
+</div>
+</div>
+<span class="font-display-lg text-secondary">80</span>
+</div>
+</div>
+</div>
+</div>
+<div class="wooden-panel bg-surface-container-high rounded-xl p-6 flicker-hearth">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">fireplace</span>
+<h3 class="font-headline-md text-headline-md text-primary">The Heart of the Tavern</h3>
+</div>
+<div class="relative rounded-lg overflow-hidden border-2 border-outline-variant shadow-2xl group">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent z-10"></div>
+<img alt="The Tavern Hearth" class="w-full h-64 object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3BIy-IsZGmggR7P_IjmX3x9zPpphw7_sz6GmX981orSwIH2KXQDND1Ebc0mrlAwJN2wxu_JEQhorEP5Ven6yWCo_UfFrJfXDeLuJTvLR6kQyGeKjFOwHSvkP2BGnUwvTpllL06LoObciYlewXEyQMlzgBha19nuPUjtlol2gwPR5fFjeNnu88H01zy00oOvwjb_uYc1foX-J5UJOeo44ikUQktK0_YzF4fXF7hzU1R_cvvVObU1bSsS9XSNZzei8XbDnJuZcyvzQ"/>
+<div class="absolute bottom-0 left-0 w-full p-4 z-20">
+<p class="font-body-lg text-on-surface italic">"A place of warmth, laughter, and endless stories."</p>
+</div>
+<div class="absolute inset-0 shadow-[inset_0_0_40px_rgba(255,185,90,0.2)] pointer-events-none"></div>
+</div>
+</div></section>
+<!-- TAB 2: SOCIAL CIRCLE -->
+<section class="tab-content hidden-tab space-y-panel-gap" id="tab-social">
+<div class="parchment-texture p-8 rounded-xl shadow-2xl relative border-8 border-double border-[#4A2C2A] min-h-[600px] flicker-hearth">
+<div class="flex items-center gap-4 mb-8 border-b-2 border-[#4A2C2A]/20 pb-4">
+<span class="material-symbols-outlined text-4xl">school</span>
+<h3 class="font-display-lg text-display-lg-mobile text-[#2e1413]">Registry of Regulars</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Regular Item 1 -->
+<div class="flex gap-4 items-center p-4 border-b border-[#4A2C2A]/10 hover:bg-[#4A2C2A]/5 rounded-lg transition-all group hover:translate-x-2">
+<div class="w-16 h-16 rounded-full border-2 border-[#4A2C2A] overflow-hidden flex-shrink-0 bg-white/50 shadow-md">
+<img alt="Old Barnaby" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD3ZU0JnOmrwa_OD_b4633A0ruYkXtE_6WUANNPrVjJ1QmQgFkjLwDzmT8HE_7CfreIQcgPZGv8zNlL9QTMol-nqN2Yc2UW4B2mMRiJnBanLT1lXK04Da8i_NCe95OejHUk3Wjfl5pfW50KSYSzXTETEBI9-VPVbPoH8K19bhsANoPe8y5amJvidBc0Jd4Tqr8hResONKEGj4gcn_2pzJBiSkYqBJKvDFOdG6PIfbiuO3ozHpNpdx1kQMWW1knhB0dsrhgjjrYauo"/>
+</div>
+<div>
+<h4 class="font-headline-md text-[#2e1413]">Old Barnaby</h4>
+<p class="font-label-sm text-[#504629] italic uppercase mb-1">Friendly Drunkard</p>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</div>
+</div>
+</div>
+<!-- Regular Item 2 -->
+<div class="flex gap-4 items-center p-4 border-b border-[#4A2C2A]/10 hover:bg-[#4A2C2A]/5 rounded-lg transition-all group hover:translate-x-2">
+<div class="w-16 h-16 rounded-full border-2 border-[#4A2C2A] overflow-hidden flex-shrink-0 bg-white/50 shadow-md">
+<img alt="The Wanderer" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD6iEojGKRBvbAjxH8MyPFjeuThaFzddHRhHIvryF-JimFyKTOworVcas1__dhvdNYFj44wMfLRAzf_YFA-tHnaj_DS3wLvU-IeQ8IOlh8bMrQW1by_lfkAItGLdjsXOuHllTdVle9oz-cmR0L9wz5N6fvfZ2R9PhojeCOmTK3wCDLIGta76ML-5eGfloBGq1wgLP-QTh6swkin4E7U7GJA2E6hGSZn9Sv6LYd0TkDtdPA0ov2mQEaIT9nT7ol8uF2gqlGdq16ULk"/>
+</div>
+<div>
+<h4 class="font-headline-md text-[#2e1413]">The Wanderer</h4>
+<p class="font-label-sm text-[#504629] italic uppercase mb-1">Mysterious Traveler</p>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</div>
+</div>
+</div>
+<!-- Regular Item 3 -->
+<div class="flex gap-4 items-center p-4 border-b border-[#4A2C2A]/10 hover:bg-[#4A2C2A]/5 rounded-lg transition-all group hover:translate-x-2">
+<div class="w-16 h-16 rounded-full border-2 border-[#4A2C2A] overflow-hidden flex-shrink-0 bg-white/50 shadow-md">
+<img alt="Captain Vane" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaILOx6Uq9pLPB8WFwY1bYs-0jrGmxx0EXDZBt2vsZQ_XA4yTMNa0NpcapWMuv4Z7YOn3j7KuSIhiterHkVww7nKBrsoUp7RmjDbRUnWv5YGUckHcjbzNLfQp2CJbeFueoJD5kpsK7rgWKWwUiYI7_KOk6lJ5R2H_L_DZxAZgnUmtpWvbJ_g_vvqynWz4NvF94hi6_aVsn7oAq6MwFZ6Vw0Smc7IRrLKfYr-FHUW_Vbv1UTukUX8CQcWBbvCs2sx6CnblA1qbNDvU"/>
+</div>
+<div>
+<h4 class="font-headline-md text-[#2e1413]">Captain Vane</h4>
+<p class="font-label-sm text-[#504629] italic uppercase mb-1">Guard Captain</p>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-sm text-[#93000a]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-4 right-8 opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-8xl text-[#2e1413]">ink_pen</span>
+</div>
+</div>
+</section>
+<!-- TAB 3: PERSONAL & SERVICE -->
+<section class="tab-content hidden-tab space-y-panel-gap" id="tab-personal">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<div class="lg:col-span-1 space-y-gutter">
+<div class="wooden-panel bg-surface-container-high p-6 rounded-xl text-center flicker-hearth">
+<p class="font-label-sm text-primary uppercase mb-2">当前阶段 (Current Stage)</p>
+<h3 class="font-display-lg text-display-lg-mobile text-on-surface mb-4">深夜营业</h3>
+<div class="w-32 h-32 mx-auto rounded-full bg-surface-container flex items-center justify-center border-2 border-outline-variant relative overflow-hidden shadow-lg">
+<span class="material-symbols-outlined text-5xl text-primary glow-amber">bedtime</span>
+</div>
+</div>
+<div class="wooden-panel bg-surface-container-high p-6 rounded-xl flicker-hearth">
+<p class="font-label-sm text-primary uppercase mb-4">当前指定服装 (Current Outfit)</p>
+<div class="bg-surface-container p-4 rounded-lg border border-outline-variant flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl">checkroom</span>
+<div>
+<p class="font-body-lg text-on-surface">经典迪恩德尔裙</p>
+<p class="font-label-sm text-on-surface-variant">系带围裙与紧身胸衣</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-2 space-y-gutter">
+<div class="wooden-panel bg-surface-container-high p-6 rounded-xl flicker-hearth">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-primary">当日服务次数 (Daily Services)</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="font-headline-md text-on-surface">12 次服务</span>
+</div>
+</div>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between mb-2">
+<label class="font-label-sm text-on-surface-variant uppercase">疲劳度 (Fatigue)</label>
+<span class="font-label-sm text-primary">逐渐枯竭</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-6 bg-surface-container-lowest rounded-full border border-outline-variant overflow-hidden relative">
+<div class="h-full bg-gradient-to-r from-orange-600 to-yellow-400 w-[35%] shadow-[0_0_10px_rgba(255,185,90,0.5)]"></div>
+<div class="absolute right-0 top-0 h-full w-2 bg-red-900/50"></div>
+</div>
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-400">candle</span>
+<!-- Flame animation element added overlaying the candle -->
+<span class="material-symbols-outlined absolute -top-1.5 text-xs text-orange-300 candle-flicker pointer-events-none" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="font-label-sm text-on-surface-variant uppercase">敏感度 (Sensitivity)</label>
+<span class="font-label-sm text-secondary">高度敏感</span>
+</div>
+<div class="h-10 bg-surface-container-lowest rounded-lg border border-outline-variant relative overflow-hidden flex items-center px-4">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/20 to-transparent animate-pulse"></div>
+<div class="w-full flex justify-between relative z-10">
+<span class="material-symbols-outlined text-secondary/40">flare</span>
+<div class="flex gap-1">
+<div class="w-2 h-6 bg-secondary rounded-full shadow-[0_0_15px_#ffdad7]"></div>
+<div class="w-2 h-6 bg-secondary rounded-full shadow-[0_0_15px_#ffdad7]"></div>
+<div class="w-2 h-6 bg-secondary rounded-full shadow-[0_0_15px_#ffdad7]"></div>
+<div class="w-2 h-6 bg-secondary/30 rounded-full"></div>
+<div class="w-2 h-6 bg-secondary/10 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-on-surface-variant uppercase block mb-3">客户满意度 (Customer Satisfaction)</label>
+<div class="flex gap-3 justify-center md:justify-start">
+<span class="material-symbols-outlined text-4xl text-primary-container glow-amber" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="material-symbols-outlined text-4xl text-primary-container glow-amber" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="material-symbols-outlined text-4xl text-primary-container glow-amber" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="material-symbols-outlined text-4xl text-primary-container glow-amber" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="material-symbols-outlined text-4xl text-on-surface-variant/20">monetization_on</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-2 h-20 md:hidden bg-surface-container-highest border-t-2 border-outline-variant shadow-[0px_-4px_12px_rgba(0,0,0,0.6)] rounded-t-full">
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full w-14 h-14 -mt-6 shadow-[0_0_15px_rgba(255,185,90,0.4)] transition-all duration-300 ease-out active:scale-110" id="btn-tavern" onclick="switchTab('tavern')">
+<span class="material-symbols-outlined">sports_bar</span>
+<span class="font-label-sm">Tavern</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-2 hover:text-primary transition-all active:scale-95" id="btn-social" onclick="switchTab('social')">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-sm">Social</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-2 hover:text-primary transition-all active:scale-95" id="btn-personal" onclick="switchTab('personal')">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm">Personal</span>
+</button>
+</nav>
+<script>
+        function switchTab(tabId) {
+            const tabs = ['tavern', 'social', 'personal'];
+            
+            // Apply transition effects
+            tabs.forEach(id => {
+                const tabElement = document.getElementById('tab-' + id);
+                if (id === tabId) {
+                    tabElement.classList.remove('hidden-tab');
+                    // Small delay to trigger entry animation
+                    setTimeout(() => tabElement.classList.add('active-tab'), 10);
+                } else {
+                    tabElement.classList.remove('active-tab');
+                    tabElement.classList.add('hidden-tab');
+                }
+            });
+
+            // Update SideNav (Desktop)
+            tabs.forEach(id => {
+                const el = document.getElementById('nav-' + id);
+                if (id === tabId) {
+                    el.className = "w-[calc(100%-16px)] flex items-center gap-3 px-4 py-3 mx-2 rounded-lg bg-primary-container text-on-primary-container shadow-[inset_0px_1px_2px_rgba(255,255,255,0.1)] transition-all active:scale-95";
+                } else {
+                    el.className = "w-[calc(100%-16px)] flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all active:scale-95";
+                }
+            });
+
+            // Update BottomNav (Mobile)
+            tabs.forEach(id => {
+                const el = document.getElementById('btn-' + id);
+                if (!el) return;
+                if (id === tabId) {
+                    el.className = "flex flex-col items-center justify-center bg-primary text-on-primary rounded-full w-14 h-14 -mt-6 shadow-[0_0_15px_rgba(255,185,90,0.4)] transition-all duration-300 ease-out active:scale-110";
+                } else {
+                    el.className = "flex flex-col items-center justify-center text-on-surface-variant py-2 hover:text-primary transition-all active:scale-95";
+                }
+            });
+        }
+    </script>
+</body></html>
