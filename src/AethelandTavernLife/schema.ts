@@ -14,16 +14,18 @@ export const Schema = z.object({
 
   人际关系: z.object({
     老板好感度: z.coerce.number().transform(v => _.clamp(v, 0, 100)).prefault(30),
-    熟客关系网: z.record(
-      z.string().describe('熟客名（用作键）'),
-      z.object({
-        姓名: z.string().prefault(''),
-        性别: z.enum(['男', '女']).prefault('男'),
-        年龄: z.coerce.number().transform(v => _.clamp(v, 0, 150)).prefault(0),
-        好感度: z.coerce.number().transform(v => _.clamp(v, 0, 100)).prefault(0),
-        评语: z.string().prefault(''),
-      }),
-    ),
+    熟客关系网: z
+      .object({})
+      .catchall(
+        z.object({
+          姓名: z.string().prefault(''),
+          性别: z.enum(['男', '女']).prefault('男'),
+          年龄: z.coerce.number().transform(v => _.clamp(v, 0, 150)).prefault(0),
+          好感度: z.coerce.number().transform(v => _.clamp(v, 0, 100)).prefault(0),
+          评语: z.string().prefault(''),
+        }).prefault({}),
+      )
+      .prefault({}),
   }).prefault({}),
 
   NSFW: z.object({
