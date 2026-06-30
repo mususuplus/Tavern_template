@@ -22,8 +22,8 @@ export const Schema = z.object({
         年龄: z.coerce.number().transform(v => _.clamp(v, 0, 150)).prefault(0),
         好感度: z.coerce.number().transform(v => _.clamp(v, 0, 100)).prefault(0),
         评语: z.string().prefault(''),
-      }).prefault({}),
-    ).prefault({}),
+      }),
+    ),
   }).prefault({}),
 
   NSFW: z.object({
